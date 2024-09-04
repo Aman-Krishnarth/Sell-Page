@@ -18,6 +18,10 @@ function Sell() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    if (files.length < 5) {
+      console.log("FILE LESS THAN 5");
+      return;
+    }
     console.log("handle submit hua hai bro");
     console.log(bookDetails);
     console.log(files);
