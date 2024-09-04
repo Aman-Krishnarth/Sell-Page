@@ -36,15 +36,23 @@ const upload = multer({ storage });
 
 //file upload
 app.post("/upload", upload.array("file", 10), async (req, res) => {
-    console.log("");
-    console.log("req.body hai bro");
-    console.log(req.body);
-    console.log(JSON.parse(req.body.bookDetails));
-  	// console.log(name, email);
+  console.log("");
+  console.log("req.body hai bro");
+  console.log(req.body);
+  console.log(JSON.parse(req.body.bookDetails));
+  // console.log(name, email);
 
-  const { name, mrp, retailPrice, discountedPrice,address } = JSON.parse(
-    req.body.bookDetails
-  );
+  const {
+    name,
+    address,
+    author,
+    language,
+    publisher,
+    publicationDate,
+    mrp,
+    retailPrice,
+    discountedPrice,
+  } = JSON.parse(req.body.bookDetails);
 
   const images = req.files;
   console.log("images waala log");
@@ -55,25 +63,29 @@ app.post("/upload", upload.array("file", 10), async (req, res) => {
     const result = await cloudinary.uploader.upload(image.path).catch((err) => {
       console.log("cloudinary upload mein error".toUpperCase());
     });
-      fs.unlink(image.path, (err) => {
-        if (err) console.log(err);
-        else {
-          console.log("\nDeleted file: example_file.txt");
-        }
-      });
+    fs.unlink(image.path, (err) => {
+      if (err) console.log(err);
+      else {
+        console.log("\nDeleted file: example_file.txt");
+      }
+    });
     imageUrls.push(result.secure_url);
   }
 
-  console.log(imageUrls)
+  console.log(imageUrls);
 
-    await book.create({
-      coverUrls: imageUrls,
-      name,
-      address,
-      mrp,
-      retailPrice,
-      discountedPrice,
-    });
+  await book.create({
+    coverUrls: imageUrls,
+    name,
+    address,
+    author,
+    language,
+    publisher,
+    publicationDate,
+    mrp,
+    retailPrice,
+    discountedPrice,
+  });
 
   res.status(200).json({
     success: true,

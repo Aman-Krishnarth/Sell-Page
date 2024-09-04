@@ -7,6 +7,10 @@ function Sell() {
   const [bookDetails, setBookDetails] = useState({
     name: "",
     address: "",
+    author: "",
+    language: "",
+    publisher: "",
+    publicationDate: "",
     mrp: 0,
     retailPrice: 0,
     discountedPrice: 0,
@@ -39,6 +43,10 @@ function Sell() {
     setBookDetails({
       name: "",
       address: "",
+      author: "",
+      language: "",
+      publisher: "",
+      publicationDate: "",
       mrp: 0,
       retailPrice: 0,
       discountedPrice: 0,
@@ -100,6 +108,74 @@ function Sell() {
             className="block mb-4 text-2xl py-2 px-4 bg-[white] text-black outline-none font-semibold w-full"
             id="address"
             value={bookDetails.address}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor="author"
+            className="text-2xl font-semibold tracking-wider"
+          >
+            Author:
+          </label>
+          <input
+            type="text"
+            placeholder="Author"
+            className="block mb-4 text-2xl py-2 px-4 bg-[white] text-black outline-none font-semibold w-full"
+            id="author"
+            value={bookDetails.author}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor="language"
+            className="text-2xl font-semibold tracking-wider"
+          >
+            Language:
+          </label>
+          <input
+            type="text"
+            placeholder="Language of the book"
+            className="block mb-4 text-2xl py-2 px-4 bg-[white] text-black outline-none font-semibold w-full"
+            id="language"
+            value={bookDetails.language}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor="publisher"
+            className="text-2xl font-semibold tracking-wider"
+          >
+            Publisher:
+          </label>
+          <input
+            type="text"
+            placeholder="Publisher"
+            className="block mb-4 text-2xl py-2 px-4 bg-[white] text-black outline-none font-semibold w-full"
+            id="publisher"
+            value={bookDetails.publisher}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor="publicationDate"
+            className="text-2xl font-semibold tracking-wider"
+          >
+            Publication Date:
+          </label>
+          <input
+            type="date"
+            placeholder="Publication date"
+            className="block mb-4 text-2xl py-2 px-4 bg-[white] text-black outline-none font-semibold w-full"
+            id="publicationDate"
+            value={bookDetails.publicationDate}
             onChange={handleChange}
           />
         </div>
