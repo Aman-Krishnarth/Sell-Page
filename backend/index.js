@@ -114,7 +114,7 @@ app.post("/addToCart", async (req, res) => {
   console.log("addd to cart mein hu");
   console.log("cart id = ", cartId);
   console.log(req.body.data.id);
-  const bId = new mongoose.Types.ObjectId(""+(req.body.data.id))
+  const bId = new mongoose.Types.ObjectId("" + req.body.data.id);
 
   const result = await cart.updateOne(
     { _id: cartId }, // Find the cart by its ID
@@ -128,6 +128,15 @@ app.post("/addToCart", async (req, res) => {
     message: "book added successfully",
   });
 });
+
+//get cart
+app.get("/cartItems", async (req,res)=>{
+  
+	const items = await cart.find({}).populate("books")
+	console.log(items);
+	res.send(items)
+
+})
 
 app.get("/buyBooks", async (req, res) => {
   const books = await book.find({});
