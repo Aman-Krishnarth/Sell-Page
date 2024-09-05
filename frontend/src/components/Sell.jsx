@@ -43,18 +43,18 @@ function Sell() {
         console.log("file upload ke post mein error hai brother");
       });
 
-    setFiles([]);
-    setBookDetails({
-      name: "",
-      address: "",
-      author: "",
-      language: "",
-      publisher: "",
-      publicationDate: "",
-      mrp: 0,
-      retailPrice: 0,
-      discountedPrice: 0,
-    });
+    // setFiles([]);
+    // setBookDetails({
+    //   name: "",
+    //   address: "",
+    //   author: "",
+    //   language: "",
+    //   publisher: "",
+    //   publicationDate: "",
+    //   mrp: 0,
+    //   retailPrice: 0,
+    //   discountedPrice: 0,
+    // });
   }
 
   function handleChange(e) {

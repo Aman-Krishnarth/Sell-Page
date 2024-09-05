@@ -31,14 +31,14 @@ const bookSchema = new mongoose.Schema({
     type: String,
   },
   language: {
-	type: String
+    type: String,
   },
   publisher: {
-	type: String
+    type: String,
   },
   publicationDate: {
-	type: Date
-  }
+    type: Date,
+  },
 });
 
 module.exports = mongoose.model("book", bookSchema);
