@@ -7,10 +7,12 @@ const conf = require("./conf/conf");
 const fs = require("fs");
 const book = require("./models/book");
 const cart = require("./models/cart");
+const orders = require("./models/order");
 const mongoose = require("mongoose");
 require("./db/connectToDb");
 
 let cartId = "";
+let adminId = "";
 
 //cloudinary
 cloudinary.config({
@@ -130,13 +132,35 @@ app.post("/addToCart", async (req, res) => {
 });
 
 //get cart
-app.get("/cartItems", async (req,res)=>{
-  
-	const items = await cart.find({}).populate("books")
-	console.log(items);
-	res.send(items)
+app.get("/cartItems", async (req, res) => {
+  const items = await cart.find({}).populate("books");
+  console.log(items);
+  res.send(items);
+});
 
-})
+//orders for admin
+app.post("/orders", async (req, res) => {
+  console.log(req.body);
+
+  const createdOrder = await orders.create({
+    book: req.body.bookId,
+    userId: req.body.userId,
+  });
+
+  res.json({
+    success: true,
+    message: "order created successfully",
+  });
+});
+
+app.get("/getOrders", async (req, res) => {
+  const data = await orders.find({}).populate("book");
+
+  res.json({
+    success: true,
+    orderList: data,
+  });
+});
 
 app.get("/buyBooks", async (req, res) => {
   const books = await book.find({});

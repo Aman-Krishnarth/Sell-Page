@@ -51,12 +51,6 @@ function BooksStore() {
 
   return (
     <div>
-      <input
-        type="text"
-        placeholder="Search for book"
-        onChange={handleSearch}
-        className="text-black"
-      />
 
       {searching
         ? searchedBooks.map((b) => {
